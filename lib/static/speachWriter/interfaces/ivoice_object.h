@@ -3,7 +3,6 @@
 
 #include <QObject>
 
-class IPropertyObject;
 class IVoiceObject
     : public QObject
 {

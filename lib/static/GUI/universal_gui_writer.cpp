@@ -2,8 +2,11 @@
 #include <QLineEdit>
 #include <QTextEdit>
 
+#include "interfaces/iproperty.h"
+#include "interfaces/iproperty_form.h"
+
 UniversalGuiWriter::UniversalGuiWriter()
-  : IPropertyObject()
+  : IPropertyWidget()
 {
 
 }
@@ -16,44 +19,57 @@ UniversalGuiWriter::~UniversalGuiWriter()
 void UniversalGuiWriter::addSetMethod(const QString &id, const QString &type, QLineEdit *wid)
 {
   Item item { id, type };
-  _content[ id ] = std::make_pair( item, [wid](const QString &text)->bool {
+  auto method = std::make_pair( item, [wid, this, id, type] {
+    auto property = form->property( id, type );
+    auto text = property->valueString();
+
     if ( text != wid->text() ) {
-      wid->setText( text );
-      return true;
+      wid->setText( property->valueString() );
     }
-    return false;
   });
+
+  _content[ "id" ] = method;
+
+  auto property = form->property( id, type );
+  property->connect( property,  &IProperty::changedValue, method.second );
 }
 
 void UniversalGuiWriter::addSetMethod(const QString &id, const QString &type, QTextEdit *wid)
 {
   Item item { id, type };
-  _content[ id ] = std::make_pair( item, [wid](const QString &text)->bool {
+  auto method = std::make_pair( item, [wid, this, id, type]()->bool {
+    auto property = form->property( id, type );
+    auto text = property->valueString();
+
     if ( text != wid->toPlainText() ) {
-      wid->setText( text );
+      wid->setText( property->valueString() );
       return true;
     }
     return false;
   });
+
+
+  _content[ "id" ] = method;
+
+  auto property = form->property( id, type );
+  property->connect( property,  &IProperty::changedValue, method.second );
 }
 
-
-IPropertyObject::ItemList UniversalGuiWriter::items() const
+QString UniversalGuiWriter::type() const
 {
-  ItemList result;
-
-  for ( auto &data: _content )
-    result << data.first;
-
-  return result;
+  return "";
 }
 
-bool UniversalGuiWriter::setItem(const IPropertyObject::Item &item, const QString &text)
+void UniversalGuiWriter::reload()
 {
-  if ( _content.contains( item.id ) ) {
+  for ( auto &data: _content ) {
     try {
-        return _content[ item.id ].second( text );
+      data.second();
     } catch (...) { }
   }
-  return false;
+}
+
+void UniversalGuiWriter::initilize(IPropertyForm *form)
+{
+  UniversalGuiWriter::form = form;
 }

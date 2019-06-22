@@ -7,7 +7,7 @@ class TestSpeachWriter final
     : public ISpeachWriter
 {
   Q_OBJECT
-  IPropertyObject   *object;
+  IPropertyForm     *object;
   IProperty         *current;
   QList<IProperty*> _properties;
 public:
@@ -26,13 +26,19 @@ public:
 public slots:
   virtual void recognition(const QString &data) override;
 
+private slots:
+  void connectForm(IPropertyForm *form);
+  void disconnectForm(IPropertyForm *form);
+  void connectPropery(IProperty *property) ;
+  void disconnectPropery(IProperty *property) ;
+
   // ISpeachWriter interface
 public:
-  virtual IPropertyObject *obj() const override;
+  virtual IPropertyForm *form() const override;
   virtual QList<IProperty *> properties() const override;
 
 public slots:
-  virtual void setPropertyObj(IPropertyObject *obj) override;
+  virtual void setPropertyObj(IPropertyForm *form) override;
 };
 
 #endif // TEST_SPEACH_WRITER_H

@@ -41,6 +41,11 @@ QVariant BaseProperty::value() const
   return _value;
 }
 
+QString BaseProperty::valueString() const
+{
+  return _value.toString();
+}
+
 QStringList BaseProperty::activateList() const
 {
   return _activateList;

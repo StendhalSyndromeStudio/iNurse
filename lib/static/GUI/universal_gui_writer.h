@@ -7,13 +7,14 @@ class QTextEdit;
 #include <QMap>
 #include <algorithm>
 #include <functional>
-#include <interfaces/Iproperty_object.h>
+#include <interfaces/iproperty_widget.h>
 
 class UniversalGuiWriter
-    : public IPropertyObject
+    : public IPropertyWidget
 {
-  using SetMethod = std::function<bool(const QString &text)>;
+  using SetMethod = std::function<void()>;
   using Data      = std::pair<Item, SetMethod>;
+  IPropertyForm       *form;
   QMap<QString, Data> _content;
 public:
   UniversalGuiWriter();
@@ -29,8 +30,9 @@ public:
 
   // IPropertyObject interface
 public:
-  virtual ItemList items() const override;
-  virtual bool setItem(const Item &item, const QString &text) override;
+  virtual QString type() const override;
+  virtual void reload() override;
+  virtual void initilize(IPropertyForm *form) override;
 };
 
 #endif // UNIVERSAL_GUI_WRITER_H

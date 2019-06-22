@@ -7,7 +7,7 @@ FormMedicalRecord::FormMedicalRecord(QWidget *parent)
   , writer ( new UniversalGuiWriter() )
 {
     ui->setupUi(this);
-    writer->addSetMethod( "fio", "fio", ui->fio );
+//    writer->addSetMethod( "fio", "fio", ui->fio );
 //    writer->addSetMethodSingle( "fio", ui->fio );
 }
 
@@ -18,14 +18,18 @@ FormMedicalRecord::~FormMedicalRecord()
 }
 
 
-IPropertyObject::ItemList FormMedicalRecord::items() const
+
+QString FormMedicalRecord::type() const
 {
-    return writer->items();
+  return "";
 }
 
-
-bool FormMedicalRecord::setItem(const IPropertyObject::Item &item, const QString &text)
+void FormMedicalRecord::reload()
 {
-    return writer->setItem( item, text );
+
 }
 
+void FormMedicalRecord::initilize(IPropertyForm *form)
+{
+  Q_UNUSED(form);
+}
