@@ -1,4 +1,5 @@
 #include <QtTest>
+#include <memory>
 #include <QDateTime>
 #include <QCoreApplication>
 #include <impl/property/regexp_property.h>
