@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "universal_gui_writer.h"
 #include <interfaces/iproperty_widget.h>
+#include <interfaces/iproperty_form.h>
 
 namespace Ui {
   class FormMedicalRecord;
@@ -18,12 +19,16 @@ public:
   explicit FormMedicalRecord(QWidget *parent = nullptr);
   ~FormMedicalRecord();
 
+  static int GUID() { return ++_guid; }
 
   // IPropertyWidget interface
 public:
   virtual QString type() const override;
   virtual void reload() override;
   virtual void initilize(IPropertyForm *form) override;
+
+private:
+  static int _guid;
 };
 
 #endif // FORM_MEDICAL_RECORD_H

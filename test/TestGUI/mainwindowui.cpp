@@ -23,7 +23,7 @@ MainWindowUI::MainWindowUI(QWidget *parent) :
     LibJson json;
     json.LoadFile( QCoreApplication::applicationDirPath() + "/docs/test.json" );
 
-    createWindow( GUI::CodeWindow::medical_record );
+//    createWindow( GUI::CodeWindow::medical_record );
     createWindow( GUI::CodeWindow::visit_doctor );
     createWindow( GUI::CodeWindow::direction );
     createWindow( GUI::CodeWindow::recipe );
@@ -42,7 +42,7 @@ void MainWindowUI::createWindow(GUI::CodeWindow code)
     QWidget *widget;// = new FormMedicalRecord( _area );
     switch ( code ) {
     case GUI::CodeWindow::medical_record:
-        widget = new FormMedicalRecord( _area );
+//        widget = new FormMedicalRecord( _area );
         break;
 
     case GUI::CodeWindow::visit_doctor:

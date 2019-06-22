@@ -3,6 +3,8 @@
 
 class QLineEdit;
 class QTextEdit;
+class QRadioButton;
+class QWidget;
 
 #include <QMap>
 #include <algorithm>
@@ -27,6 +29,7 @@ public:
   }
   void addSetMethod(const QString &id, const QString &type, QLineEdit *wid);
   void addSetMethod(const QString &id, const QString &type, QTextEdit *wid);
+  void addSetMethod(const QString &id, const QString &type, QRadioButton *wid, QWidget* parent);
 
   // IPropertyObject interface
 public:
