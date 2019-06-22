@@ -140,19 +140,19 @@ void SpeachWriterPropertyTest::test_case2()
 }
 
 #include "interfaces/ispeach_writer.h"
-#include "impl/test_property_object.h"
+//#include "impl/test_property_object.h"
 #include "impl/speach_writer_provider.h"
 void SpeachWriterPropertyTest::test_case3()
 {
-  auto obj    = new TestPropertyObject();
-  auto writer = SpeachWriterProvider().create();
+//  auto obj    = new TestPropertyObject();
+//  auto writer = SpeachWriterProvider().create();
 
-  writer->setPropertyObj( obj );
+//  writer->setPropertyObj( obj );
 
-  auto dt = QDateTime::currentMSecsSinceEpoch();
-  while ( QDateTime::currentMSecsSinceEpoch() - dt < 5000 ) {
-    QCoreApplication::processEvents();
-  }
+//  auto dt = QDateTime::currentMSecsSinceEpoch();
+//  while ( QDateTime::currentMSecsSinceEpoch() - dt < 5000 ) {
+//    QCoreApplication::processEvents();
+//  }
 }
 
 QTEST_MAIN(SpeachWriterPropertyTest)

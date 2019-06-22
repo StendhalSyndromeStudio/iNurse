@@ -18,6 +18,7 @@ public:
   virtual QString id() const = 0;
   virtual QString type() const = 0;
   virtual QVariant value() const = 0;
+  virtual QString valueString() const = 0;
   virtual QStringList activateList() const = 0;
 
 public slots:

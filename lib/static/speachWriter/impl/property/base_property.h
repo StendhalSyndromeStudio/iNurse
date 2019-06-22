@@ -32,6 +32,7 @@ public:
   virtual QString id() const override;
   virtual QString type() const override;
   virtual QVariant value() const override;
+  virtual QString valueString() const override;
   virtual QStringList activateList() const override;
 
 public slots:
