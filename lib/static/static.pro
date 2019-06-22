@@ -2,4 +2,7 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     GUI \
-    LibJson
+    LibJson \
+    speachWriter
+
+
