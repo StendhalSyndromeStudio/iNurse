@@ -1,12 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-<<<<<<< HEAD
-    TextToSpeech
-=======
+    TextToSpeech\
     GUI \
     LibJson \
-    speachWriter
-
-
->>>>>>> origin/master
+    speachWriter\

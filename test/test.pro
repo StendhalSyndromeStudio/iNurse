@@ -1,10 +1,6 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-<<<<<<< HEAD
-    TestWebServer
-=======
+    TestWebServer\
     speach_writer_property_tst \
     TestGUI
-
->>>>>>> origin/master
