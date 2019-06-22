@@ -28,14 +28,16 @@ SOURCES += \
         form_medical_record.cpp \
         form_recipe.cpp \
         form_visit_doctor.cpp \
-        gui.cpp
+        gui.cpp \
+    universal_gui_writer.cpp
 
 HEADERS += \
         form_direction.h \
         form_medical_record.h \
         form_recipe.h \
         form_visit_doctor.h \
-        gui.h
+        gui.h \
+    universal_gui_writer.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
