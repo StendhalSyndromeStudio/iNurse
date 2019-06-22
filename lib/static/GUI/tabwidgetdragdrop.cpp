@@ -10,11 +10,11 @@ TabWidgetDragDrop::TabWidgetDragDrop(QWidget *parent):QTabWidget (parent)
 }
 
 void TabWidgetDragDrop::mousePressEvent(QMouseEvent *event){
-
+    Q_UNUSED( event )
 }
 
 void TabWidgetDragDrop::mouseMoveEvent(QMouseEvent *event){
-
+    Q_UNUSED( event )
 }
 
 void TabWidgetDragDrop::dragEnterEvent(QDragEnterEvent *event){
