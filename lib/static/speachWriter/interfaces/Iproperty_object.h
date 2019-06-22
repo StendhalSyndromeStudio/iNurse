@@ -7,6 +7,8 @@ class IPropertyObject
 {
 public:
   struct Item {
+
+
     QString id;
     QString type;
   };
