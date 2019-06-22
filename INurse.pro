@@ -4,7 +4,8 @@ SUBDIRS += \
     app \
     lib \
     external \
-    test
+    test \
+    other
 
 lib.depends = external
 app.depends = lib
