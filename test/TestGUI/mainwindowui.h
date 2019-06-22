@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMdiArea>
 #include <QMap>
+#include <gui.h>
 
 namespace Ui {
 class MainWindowUI;
@@ -14,14 +15,6 @@ class MainWindowUI : public QMainWindow
     Q_OBJECT
 
 public:
-
-    enum class CodeWindow {
-        medical_record,
-        visit_doctor,
-        direction,
-        recipe
-    };
-
     explicit MainWindowUI(QWidget *parent = nullptr);
     ~MainWindowUI();
 
@@ -31,7 +24,7 @@ private:
     QMdiArea* _area;
 
 private:
-    void createWindow( CodeWindow code );
+    void createWindow( GUI::CodeWindow code );
 };
 
 #endif // MAINWINDOWUI_H

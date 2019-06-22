@@ -3,10 +3,10 @@
 #include <libjson.h>
 #include <QGridLayout>
 #include <QLabel>
-#include "form_medical_record.h"
-#include "form_visit_doctor.h"
-#include "form_direction.h"
-#include "form_recipe.h"
+#include <form_medical_record.h>
+#include <form_visit_doctor.h>
+#include <form_direction.h>
+#include <form_recipe.h>
 
 MainWindowUI::MainWindowUI(QWidget *parent) :
     QMainWindow(parent),
@@ -23,10 +23,10 @@ MainWindowUI::MainWindowUI(QWidget *parent) :
     LibJson json;
     json.LoadFile( QCoreApplication::applicationDirPath() + "/docs/test.json" );
 
-    createWindow( CodeWindow::medical_record );
-    createWindow( CodeWindow::visit_doctor );
-    createWindow( CodeWindow::direction );
-    createWindow( CodeWindow::recipe );
+    createWindow( GUI::CodeWindow::medical_record );
+    createWindow( GUI::CodeWindow::visit_doctor );
+    createWindow( GUI::CodeWindow::direction );
+    createWindow( GUI::CodeWindow::recipe );
 }
 
 
@@ -36,24 +36,24 @@ MainWindowUI::~MainWindowUI()
 }
 
 
-void MainWindowUI::createWindow(CodeWindow code)
+void MainWindowUI::createWindow(GUI::CodeWindow code)
 {
     // Создаём виджет, который будет окном
     QWidget *widget;// = new FormMedicalRecord( _area );
     switch ( code ) {
-    case CodeWindow::medical_record:
+    case GUI::CodeWindow::medical_record:
         widget = new FormMedicalRecord( _area );
         break;
 
-    case CodeWindow::visit_doctor:
+    case GUI::CodeWindow::visit_doctor:
         widget = new FormVisitDoctor( _area );
         break;
 
-    case CodeWindow::direction:
+    case GUI::CodeWindow::direction:
         widget = new FormDirection( _area );
         break;
 
-    case CodeWindow::recipe:
+    case GUI::CodeWindow::recipe:
         widget = new FormRecipe( _area );
         break;
     }
