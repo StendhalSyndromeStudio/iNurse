@@ -28,14 +28,18 @@ SOURCES += \
         form_medical_record.cpp \
         form_recipe.cpp \
         form_visit_doctor.cpp \
-        gui.cpp
+        gui.cpp \
+    tabwidgetdragdrop.cpp \
+    formprogress.cpp
 
 HEADERS += \
         form_direction.h \
         form_medical_record.h \
         form_recipe.h \
         form_visit_doctor.h \
-        gui.h
+        gui.h \
+    tabwidgetdragdrop.h \
+    formprogress.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
@@ -45,4 +49,5 @@ FORMS += \
     form_direction.ui \
     form_medical_record.ui \
     form_recipe.ui \
-    form_visit_doctor.ui
+    form_visit_doctor.ui \
+    formprogress.ui

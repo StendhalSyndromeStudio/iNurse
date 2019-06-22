@@ -7,13 +7,15 @@
 #include <form_visit_doctor.h>
 #include <form_direction.h>
 #include <form_recipe.h>
+#include "maindoctors.h"
 
 MainWindowUI::MainWindowUI(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindowUI)
 {
     ui->setupUi(this);
-
+    MainDoctors* w = new MainDoctors();
+    w->show();
     // Создаём Mdi Area в качестве центрального виджета
     _area = new QMdiArea( this );
     _area->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
