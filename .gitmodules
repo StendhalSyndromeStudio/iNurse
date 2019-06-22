@@ -1,0 +1,4 @@
+[submodule "VoiceService/cloudapi"]
+	path = VoiceService/cloudapi
+	url = https://github.com/yandex-cloud/cloudapi
+	branch = master

@@ -1,0 +1,5 @@
+pip install grpcio-tools
+#из папки cloudapi
+python -m grpc_tools.protoc -I . -I third_party/googleapis --python_out=../ --grpc_python_out=../ google/api/http.proto google/api/annotations.proto yandex/api/operation.proto google/rpc/status.proto yandex/cloud/operation/operation.proto yandex/cloud/ai/stt/v2/stt_service.proto
+
+pip install websocket
