@@ -14,3 +14,24 @@ FormMedicalRecord::~FormMedicalRecord()
     delete ui;
 }
 
+
+IPropertyObject::ItemList FormMedicalRecord::items() const
+{
+    ItemList list;// = new ItemList();
+    Item item;
+    item.id = "fio";
+    item.type = "fio";
+    list.append( item );
+    return list;
+}
+
+
+bool FormMedicalRecord::setItem(const IPropertyObject::Item &item, const QString &text)
+{
+    if ( item.id == "fio" ) {
+        ui->fio->setText( text );
+        return true;
+    }
+    return false;
+}
+
