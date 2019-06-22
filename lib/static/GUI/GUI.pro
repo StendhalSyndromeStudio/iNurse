@@ -29,7 +29,9 @@ SOURCES += \
         form_recipe.cpp \
         form_visit_doctor.cpp \
         gui.cpp \
-    universal_gui_writer.cpp
+    tabwidgetdragdrop.cpp \
+    formprogress.cpp\
+    universal_gui_writer.cpp\
 
 HEADERS += \
         form_direction.h \
@@ -37,7 +39,10 @@ HEADERS += \
         form_recipe.h \
         form_visit_doctor.h \
         gui.h \
+    tabwidgetdragdrop.h \
+    formprogress.h\
     universal_gui_writer.h
+
 unix {
     target.path = /usr/lib
     INSTALLS += target
@@ -47,7 +52,9 @@ FORMS += \
     form_direction.ui \
     form_medical_record.ui \
     form_recipe.ui \
-    form_visit_doctor.ui
+    form_visit_doctor.ui \
+    formprogress.ui\
+    form_visit_doctor.ui\
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../speachWriter/release/ -lspeachWriter
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../speachWriter/debug/ -lspeachWriter
@@ -61,3 +68,4 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../spea
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../speachWriter/release/speachWriter.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../speachWriter/debug/speachWriter.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../speachWriter/libspeachWriter.a
+

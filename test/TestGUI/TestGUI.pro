@@ -30,21 +30,24 @@ SOURCES += \
         #form_recipe.cpp \
         #form_visit_doctor.cpp \
         main.cpp \
-        mainwindowui.cpp
+        mainwindowui.cpp \
+    maindoctors.cpp
 
 HEADERS += \
         #form_direction.h \
         #form_medical_record.h \
         #form_recipe.h \
         #form_visit_doctor.h \
-        mainwindowui.h
+        mainwindowui.h \
+    maindoctors.h
 
 FORMS += \
         #form_direction.ui \
         #form_medical_record.ui \
         #form_recipe.ui \
         #form_visit_doctor.ui \
-        mainwindowui.ui
+        mainwindowui.ui \
+    maindoctors.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -93,3 +96,6 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../l
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/GUI/release/GUI.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/GUI/debug/GUI.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/GUI/libGUI.a
+
+RESOURCES += \
+    resourse.qrc
