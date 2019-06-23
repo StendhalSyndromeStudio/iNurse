@@ -7,4 +7,5 @@ SUBDIRS += \
     TextToSpeech\
     GUI \
     LibJson \
+    VoiceProxy
 
