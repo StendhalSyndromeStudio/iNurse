@@ -1,0 +1,13 @@
+{
+    "id": "complications",
+    "activation_list": [
+        "Осложнения", "Осложнение" 
+    ],
+    "question_list": [
+        "Осложнения"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

@@ -9,3 +9,8 @@ IVoiceObject::~IVoiceObject()
 {
 
 }
+
+void IVoiceObject::sayFinished(const QString &)
+{
+
+}

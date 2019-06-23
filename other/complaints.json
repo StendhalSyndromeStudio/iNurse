@@ -1,0 +1,13 @@
+{
+    "id": "complaints",
+    "activation_list": [
+        "Жалобы пациента", "жалобы", "что беспокоит" 
+    ],
+    "question_list": [
+        "Жалобы пациента"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/res">
         <file>style.css</file>
+        <file>assistant.wav</file>
     </qresource>
 </RCC>

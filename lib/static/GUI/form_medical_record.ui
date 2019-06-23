@@ -66,7 +66,7 @@
          </size>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;В АМБУЛАТОРНЫХ УСЛОВИЯХ №&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>В АМБУЛАТОРНЫХ УСЛОВИЯХ №</string>
         </property>
        </widget>
       </item>
@@ -77,6 +77,9 @@
           <width>150</width>
           <height>16777215</height>
          </size>
+        </property>
+        <property name="text">
+         <string/>
         </property>
         <property name="readOnly">
          <bool>true</bool>
@@ -596,7 +599,7 @@
       <item>
        <widget class="QLabel" name="label_28">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;11. Семейное положение: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>12. Семейное положение:</string>
         </property>
        </widget>
       </item>
@@ -636,7 +639,14 @@
       <item>
        <widget class="QLabel" name="label_29">
         <property name="text">
-         <string>12. Образование: профессиональное:</string>
+         <string>13. Образование:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_38">
+        <property name="text">
+         <string> профессиональное:</string>
         </property>
        </widget>
       </item>
@@ -711,7 +721,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_31">
         <property name="text">
-         <string>13. Занятость:</string>
+         <string>14. Занятость:</string>
         </property>
        </widget>
       </item>
@@ -765,7 +775,7 @@
       <item>
        <widget class="QLabel" name="label_32">
         <property name="text">
-         <string>14. Инвалидность (первичная, повторная, группа, дата)</string>
+         <string>15. Инвалидность (первичная, повторная, группа, дата)</string>
         </property>
        </widget>
       </item>
@@ -791,7 +801,7 @@
       <item>
        <widget class="QLabel" name="label_33">
         <property name="text">
-         <string>15. Место работы:</string>
+         <string>16. Место работы,</string>
         </property>
        </widget>
       </item>
@@ -831,7 +841,7 @@
       <item>
        <widget class="QLabel" name="label_35">
         <property name="text">
-         <string>16. Группа крови</string>
+         <string>17. Группа крови</string>
         </property>
        </widget>
       </item>
@@ -851,7 +861,7 @@
       <item>
        <widget class="QLabel" name="label_36">
         <property name="text">
-         <string>22. Rh-фактор</string>
+         <string>18. Rh-фактор</string>
         </property>
        </widget>
       </item>
@@ -874,7 +884,7 @@
       <item>
        <widget class="QLabel" name="label_37">
         <property name="text">
-         <string>24. Аллергические реакции</string>
+         <string>19. Аллергические реакции</string>
         </property>
        </widget>
       </item>

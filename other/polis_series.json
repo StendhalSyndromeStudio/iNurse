@@ -1,0 +1,13 @@
+{
+    "id": "polis_series",
+    "activation_list": [
+        "Полис ОМС серия", "ОМС серия",
+    ],
+    "question_list": [
+        "Полис ОМС серия"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

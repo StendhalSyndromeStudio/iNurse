@@ -31,11 +31,12 @@ public:
   void addSetMethod(const QString &id, const QString &type, QTextEdit *wid);
   void addSetMethod(const QString &id, const QString &type, QRadioButton *wid, QWidget* parent);
 
-  // IPropertyObject interface
+  // IPropertyWidget interface
 public:
   virtual QString type() const override;
   virtual void reload() override;
   virtual void initilize(IPropertyForm *form) override;
+  void print() override;
 };
 
 #endif // UNIVERSAL_GUI_WRITER_H

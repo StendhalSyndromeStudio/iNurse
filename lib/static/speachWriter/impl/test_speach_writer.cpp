@@ -54,6 +54,12 @@ bool TestSpeachWriter::hasWaitData() const
   return !!object;
 }
 
+void TestSpeachWriter::sayFinished(const QString &data)
+{
+  if ( current )
+    current->sayFinished( data );
+}
+
 void TestSpeachWriter::recognition(const QString &data)
 {
   if ( hasWaitData() ) {

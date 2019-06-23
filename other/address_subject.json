@@ -1,0 +1,13 @@
+{
+    "id": "address_subject",
+    "activation_list": [
+        "Адрес регистрации субъект", "субъект"
+    ],
+    "question_list": [
+        "Адрес регистрации, субъект"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

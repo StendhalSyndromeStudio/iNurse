@@ -1,0 +1,13 @@
+{
+    "id": "",
+    "activation_list": [
+        "Группа здоровья" 
+    ],
+    "question_list": [
+        "Группа здоровья"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

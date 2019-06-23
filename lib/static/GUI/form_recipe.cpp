@@ -8,7 +8,32 @@ FormRecipe::FormRecipe(QWidget *parent) :
     ui->setupUi(this);
 }
 
+
 FormRecipe::~FormRecipe()
 {
     delete ui;
+}
+
+
+QString FormRecipe::type() const
+{
+    return "";
+}
+
+
+void FormRecipe::reload()
+{
+
+}
+
+
+void FormRecipe::initilize(IPropertyForm *form)
+{
+
+}
+
+
+void FormRecipe::print()
+{
+
 }

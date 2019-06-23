@@ -101,7 +101,7 @@ namespace
   void loadFormFromJson(IPropertyForm *form, const QJsonObject &obj){
     auto arr = obj[ "props" ].toArray();
     for  ( int i = 0; i < arr.count(); ++i ) {
-      auto obj = arr.at( i );
+      auto obj = arr.at( i ).toObject();
       form->property( obj[ "id" ].toString(), obj[ "type" ].toString() )
           ->setValue( obj[ "value" ].toString() );
 

@@ -18,6 +18,10 @@ public:
     bool LoadFile( QString path );
 
 
+    QJsonObject json( );
+
+    QString getValue( const QString &name );
+    QStringList getKeys( );
 private:
     ///
     /// \brief Объект с данными
