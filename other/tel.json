@@ -1,0 +1,13 @@
+{
+    "id": "tel",
+    "activation_list": [
+        "Телефон", "тел", "состовый", "мобильный"
+    ],
+    "question_list": [
+        "Телефон"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

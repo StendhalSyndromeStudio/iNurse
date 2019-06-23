@@ -1,0 +1,13 @@
+{
+    "id": "address_apartment",
+    "activation_list": [
+        "Адрес регистрации квартира", "квартира"
+    ],
+    "question_list": [
+        "Адрес регистрации, квартира"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

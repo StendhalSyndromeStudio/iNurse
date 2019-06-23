@@ -1,0 +1,13 @@
+{
+    "id": "polis_number",
+    "activation_list": [
+        "Полис ОМС номер", "ОМС номер", "полис номер"
+    ],
+    "question_list": [
+        "Полис ОМС номер"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

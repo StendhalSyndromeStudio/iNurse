@@ -1,0 +1,13 @@
+{
+    "id": "anamnesis",
+    "activation_list": [
+        "Анамнез заболевания", "анамнез" 
+    ],
+    "question_list": [
+        "Анамнез заболевания"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

@@ -31,3 +31,9 @@ void FormRecipe::initilize(IPropertyForm *form)
 {
 
 }
+
+
+void FormRecipe::print()
+{
+
+}

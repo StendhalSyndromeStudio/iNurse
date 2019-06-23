@@ -1,0 +1,13 @@
+{
+    "id": "address_city",
+    "activation_list": [
+        "Адрес регистрации город", "город"
+    ],
+    "question_list": [
+        "Адрес регистрации, город"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

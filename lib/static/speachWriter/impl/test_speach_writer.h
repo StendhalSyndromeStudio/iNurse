@@ -24,6 +24,7 @@ public:
   virtual bool hasWaitData() const override;
 
 public slots:
+  virtual void sayFinished(const QString &data) override;
   virtual void recognition(const QString &data) override;
 
 private slots:

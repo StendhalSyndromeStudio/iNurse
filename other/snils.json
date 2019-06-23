@@ -1,0 +1,13 @@
+{
+    "id": "snils",
+    "activation_list": [
+        "СНИЛС", "Страховое свидетельство", "Страховое"
+    ],
+    "question_list": [
+        "СНИЛС"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

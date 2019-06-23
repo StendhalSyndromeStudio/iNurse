@@ -1,0 +1,13 @@
+{
+    "id": "date_birth_year",
+    "activation_list": [
+        "Год рождения", "Год"
+    ],
+    "question_list": [
+        "Год рождения"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

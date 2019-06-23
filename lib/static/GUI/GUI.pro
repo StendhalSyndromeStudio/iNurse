@@ -33,6 +33,7 @@ SOURCES += \
     tabwidgetdragdrop.cpp \
     formprogress.cpp\
     universal_gui_writer.cpp\
+    property_widget_provider.cpp
 
 HEADERS += \
         form_direction.h \
@@ -43,7 +44,8 @@ HEADERS += \
     print.h \
     tabwidgetdragdrop.h \
     formprogress.h\
-    universal_gui_writer.h
+    universal_gui_writer.h \
+    property_widget_provider.h
 
 unix {
     target.path = /usr/lib

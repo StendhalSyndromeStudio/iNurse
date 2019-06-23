@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    VoiceProxy proxy(6790,QUrl("ws://127.0.0.1:6789"),true, true);
+    VoiceProxy proxy(6790,QUrl("ws://127.0.0.1:6789"),true, false);
 
     QObject::connect(&proxy, &VoiceProxy::recognized, [](QJsonObject data){
         qDebug() << "from main";

@@ -2,6 +2,8 @@
 #include <QApplication>
 #include <QFile>
 
+#include "assistent/assistant.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -13,6 +15,8 @@ int main(int argc, char *argv[])
     a.setStyleSheet(styleSheet);
     */
     w.show();
+
+    Assistent::inst();
 
     return a.exec();
 }
