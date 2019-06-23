@@ -26,18 +26,22 @@ void MainDoctors::CloseTab(int index){
 }
 
 void MainDoctors::CreateRtf(QString value){
-    qDebug()<< value+" :получил создание";
-    QWidget* val;
-    if (value=="Медицинский отчет.rtf"){
-        val = new FormMedicalRecord(  );
+    if ( _listDocs.contains( value ) ) {
+        return;
     }
+    _listDocs.append( value );
+    //qDebug()<< value+" :получил создание";
+    QWidget* val;
+    if (value=="Медицинская карта.rtf"){
+        val = new FormMedicalRecord(  );
+    } else
     if (value=="Визит к доктору.rtf"){
         val = new FormVisitDoctor(  );
-    }
+    } else
     if (value=="Направление к доктору.rtf"){
         val = new FormDirection(  );
-    }
-    if (value=="рецепт.rtf"){
+    } else
+    if (value=="Рецепт.rtf"){
         val = new FormRecipe(  );
     }
     FormProgress* prog = new FormProgress();

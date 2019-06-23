@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <form_medical_record.h>
+#include "maindoctors.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -36,5 +37,8 @@ void MainWindow::on_action_quit_triggered()
 
 void MainWindow::on_action_add_doc_triggered()
 {
-
+    QWidget *widget = new MainDoctors( _area );
+    _area->addSubWindow( widget );
+    widget->setWindowState( Qt::WindowState::WindowMaximized );
+    widget->show();
 }
