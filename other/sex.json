@@ -1,0 +1,13 @@
+{
+    "id": "sex",
+    "activation_list": [
+        "Пол"
+    ],
+    "question_list": [
+        "Укажите пол"
+    ],
+    "variants": [
+        "Мужской", "Муж", "Женский", "Жен"
+    ],
+    "type": "text"
+}

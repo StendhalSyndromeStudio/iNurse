@@ -1,0 +1,13 @@
+{
+    "id": "disability",
+    "activation_list": [
+        "Инвалидность", "Группа" 
+    ],
+    "question_list": [
+        "Инвалидность"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

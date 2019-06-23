@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <form_medical_record.h>
+#include <form_visit_doctor.h>
+#include <form_direction.h>
+#include <form_recipe.h>
 #include "maindoctors.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -15,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _area->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setCentralWidget( _area );
 
-    FormMedicalRecord *widget = new FormMedicalRecord( _area );
+    FormVisitDoctor *widget = new FormVisitDoctor( _area );
     // Добавляем виджет в качестве подокна в Mdi Area
     _area->addSubWindow( widget );
     widget->show();

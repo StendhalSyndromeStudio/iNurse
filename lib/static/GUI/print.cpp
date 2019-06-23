@@ -28,6 +28,24 @@ void Print::addText(QString text, int size, FontStyle style, bool new_line)
 }
 
 
+void Print::createTable(QString id, QPoint size_dimension, QPoint size_cells)
+{
+    //_tables[ id ]
+}
+
+
+void Print::setCellText(QPoint position, QString text)
+{
+
+}
+
+
+void Print::saveTable(QString id)
+{
+
+}
+
+
 void Print::toPrint()
 {
     QTextDocument document;

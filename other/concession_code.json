@@ -1,0 +1,13 @@
+{
+    "id": "concession_code",
+    "activation_list": [
+        "Код категории льготы", "Код льготы", "Код категории"
+    ],
+    "question_list": [
+        "Код категории льготы"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

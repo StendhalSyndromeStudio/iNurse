@@ -1,0 +1,13 @@
+{
+    "id": "medication",
+    "activation_list": [
+        "Лекарство", "препарат", "зелье"
+    ],
+    "question_list": [
+        "Лекарство"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

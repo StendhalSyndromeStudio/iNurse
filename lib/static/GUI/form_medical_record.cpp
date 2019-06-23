@@ -1,6 +1,5 @@
 #include "form_medical_record.h"
 #include "ui_form_medical_record.h"
-#include <QTextDocument>
 #include "print.h"
 
 static int _guid = 0;
@@ -78,7 +77,7 @@ void FormMedicalRecord::print()
 {
     Print printer;
     printer.addLine( ui->label->text(), 14, Qt::AlignmentFlag::AlignCenter );
-    printer.addText( QString( "%1" ).arg( ui->label_2->text() ), 14, Print::FontStyle::normal, true );
+    printer.addText( ui->label_2->text(), 14, Print::FontStyle::normal, true );
     printer.addText( QString( "  %1  " ).arg( ui->card_number->text() ), 14, Print::FontStyle::underline );
     printer.addText( ui->label_3->text(), 10, Print::FontStyle::normal, true );
     printer.addText( QString( "  %1  " ).arg( ui->creation_date_day->text() ), 10, Print::FontStyle::underline );
@@ -130,6 +129,42 @@ void FormMedicalRecord::print()
 
     printer.addText( ui->label_23->text(), 10, Print::FontStyle::bold, true );
     printer.addText( QString( "  %1  " ).arg( ui->medical_organization->text() ), 10, Print::FontStyle::underline );
+
+    printer.addText( ui->label_24->text(), 10, Print::FontStyle::bold, true );
+    printer.addText( QString( "  %1  " ).arg( ui->concession_code->text() ), 10, Print::FontStyle::underline );
+    printer.addText( ui->label_25->text(), 10, Print::FontStyle::bold );
+    printer.addText( QString( "  %1  " ).arg( ui->documnet->text() ), 10, Print::FontStyle::underline );
+    printer.addText( ui->label_26->text(), 10, Print::FontStyle::bold );
+    printer.addText( QString( "  %1  " ).arg( ui->documnet_series->text() ), 10, Print::FontStyle::underline );
+    printer.addText( ui->label_27->text(), 10, Print::FontStyle::bold );
+    printer.addText( QString( "  %1  " ).arg( ui->documnet_number->text() ), 10, Print::FontStyle::underline );
+
+    printer.addText( ui->label_28->text(), 10, Print::FontStyle::bold, true );
+    printer.addText( QString( "  %1  " ).arg( "неизвестно" ), 10, Print::FontStyle::underline );
+
+    printer.addText( ui->label_29->text(), 10, Print::FontStyle::bold, true );
+    printer.addText( QString( "  %1  " ).arg( "неизвестно" ), 10, Print::FontStyle::underline );
+
+    printer.addText( ui->label_31->text(), 10, Print::FontStyle::bold, true );
+    printer.addText( QString( "  %1  " ).arg( "прочее" ), 10, Print::FontStyle::underline );
+
+    printer.addText( ui->label_32->text(), 10, Print::FontStyle::bold, true );
+    printer.addText( QString( "  %1  " ).arg( ui->disability->text() ), 10, Print::FontStyle::underline );
+
+    printer.addText( ui->label_33->text(), 10, Print::FontStyle::bold, true );
+    printer.addText( QString( "  %1  " ).arg( ui->work_place->text() ), 10, Print::FontStyle::underline );
+
+    printer.addText( ui->label_34->text(), 10, Print::FontStyle::bold, true );
+    printer.addText( QString( "  %1  " ).arg( ui->work_post->text() ), 10, Print::FontStyle::underline );
+
+    printer.addText( ui->label_35->text(), 10, Print::FontStyle::bold, true );
+    printer.addText( QString( "  %1  " ).arg( ui->blood_group->text() ), 10, Print::FontStyle::underline );
+
+    printer.addText( ui->label_36->text(), 10, Print::FontStyle::bold );
+    printer.addText( QString( "  %1  " ).arg( ui->blood_rh->text() ), 10, Print::FontStyle::underline );
+
+    printer.addText( ui->label_37->text(), 10, Print::FontStyle::bold, true );
+    printer.addText( QString( "  %1  " ).arg( ui->allegic_reactions->text() ), 10, Print::FontStyle::underline );
 
     printer.toPrint();
 }
