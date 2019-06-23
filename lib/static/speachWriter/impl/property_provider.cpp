@@ -23,7 +23,7 @@ void PropertyProvider::add(const QString &type, const PropertyProvider::Property
   creators[ type ] = creator;
 }
 
-
+#include "property/base_property.h"
 IProperty *PropertyProvider::create(const QString &id, const QString &type)
 {
   if ( creators.contains( type ) ) {
@@ -32,5 +32,5 @@ IProperty *PropertyProvider::create(const QString &id, const QString &type)
     } catch (...) { }
   }
 
-  return nullptr;
+  return new BaseProperty( id, type );
 }
