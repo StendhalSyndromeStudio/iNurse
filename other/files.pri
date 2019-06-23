@@ -1,1 +1,1 @@
-DISTFILES += fio.json mkb10.json
+DISTFILES += fio.json mkb10.json medication.json
