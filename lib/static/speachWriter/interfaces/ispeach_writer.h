@@ -5,6 +5,7 @@
 #include "ivoice_object.h"
 
 class IProperty;
+class IPropertyForm;
 class ISpeachWriter
     : public IVoiceObject
 {
@@ -15,11 +16,11 @@ public:
   virtual ~ISpeachWriter() override;
 
 public:
-  virtual IPropertyObject *obj() const = 0;
+  virtual IPropertyForm *form() const = 0;
   virtual QList<IProperty*> properties() const = 0;
 
 public slots:
-  virtual void setPropertyObj(IPropertyObject *obj) = 0;
+  virtual void setPropertyObj(IPropertyForm *form) = 0;
 
 signals:
   void changed();

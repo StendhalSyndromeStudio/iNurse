@@ -8,7 +8,26 @@ FormVisitDoctor::FormVisitDoctor(QWidget *parent) :
     ui->setupUi(this);
 }
 
+
 FormVisitDoctor::~FormVisitDoctor()
 {
     delete ui;
+}
+
+
+QString FormVisitDoctor::type() const
+{
+    return "";
+}
+
+
+void FormVisitDoctor::reload()
+{
+
+}
+
+
+void FormVisitDoctor::initilize(IPropertyForm *form)
+{
+
 }

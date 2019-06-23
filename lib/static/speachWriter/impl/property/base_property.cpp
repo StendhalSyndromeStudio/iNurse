@@ -7,7 +7,6 @@ BaseProperty::BaseProperty(const QString &id, const QString &type, const QVarian
   , _value ( value )
   , _isActivate ( false )
 {
-
 }
 
 BaseProperty::~BaseProperty()
@@ -41,9 +40,24 @@ QVariant BaseProperty::value() const
   return _value;
 }
 
+QString BaseProperty::valueString() const
+{
+  return _value.toString();
+}
+
 QStringList BaseProperty::activateList() const
 {
-  return _activateList;
+  return _dataById[ "activateList" ].toStringList();
+}
+
+QVariant BaseProperty::getById(const QString &id) const
+{
+  return _dataById[ id ].toStringList();
+}
+
+QStringList BaseProperty::dataIdList() const
+{
+  return _dataById.keys();
 }
 
 bool BaseProperty::activate()
@@ -74,4 +88,10 @@ bool BaseProperty::setValue(const QVariant &value)
     return true;
   }
   return false;
+}
+
+bool BaseProperty::setById(const QString &id, const QVariant &value)
+{
+  _dataById[ id ] = value;
+  return true;
 }

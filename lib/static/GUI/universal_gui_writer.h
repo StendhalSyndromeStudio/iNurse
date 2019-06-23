@@ -3,17 +3,20 @@
 
 class QLineEdit;
 class QTextEdit;
+class QRadioButton;
+class QWidget;
 
 #include <QMap>
 #include <algorithm>
 #include <functional>
-#include <interfaces/Iproperty_object.h>
+#include <interfaces/iproperty_widget.h>
 
 class UniversalGuiWriter
-    : public IPropertyObject
+    : public IPropertyWidget
 {
-  using SetMethod = std::function<bool(const QString &text)>;
+  using SetMethod = std::function<void()>;
   using Data      = std::pair<Item, SetMethod>;
+  IPropertyForm       *form;
   QMap<QString, Data> _content;
 public:
   UniversalGuiWriter();
@@ -26,11 +29,13 @@ public:
   }
   void addSetMethod(const QString &id, const QString &type, QLineEdit *wid);
   void addSetMethod(const QString &id, const QString &type, QTextEdit *wid);
+  void addSetMethod(const QString &id, const QString &type, QRadioButton *wid, QWidget* parent);
 
   // IPropertyObject interface
 public:
-  virtual ItemList items() const override;
-  virtual bool setItem(const Item &item, const QString &text) override;
+  virtual QString type() const override;
+  virtual void reload() override;
+  virtual void initilize(IPropertyForm *form) override;
 };
 
 #endif // UNIVERSAL_GUI_WRITER_H

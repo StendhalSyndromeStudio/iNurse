@@ -1,6 +1,6 @@
 #include "test_speach_writer.h"
 #include "interfaces/iproperty.h"
-#include "interfaces/Iproperty_object.h"
+#include "interfaces/iproperty_form.h"
 
 TestSpeachWriter::TestSpeachWriter()
   : ISpeachWriter ()
@@ -17,14 +17,16 @@ TestSpeachWriter::~TestSpeachWriter()
 
 void TestSpeachWriter::clearProperty()
 {
-  while ( !_properties.isEmpty() )
-    delete _properties.takeFirst();
+  if ( object ) {
+    for ( auto &property: object->properties() )
+      disconnectPropery( property );
+  }
 }
 
 void TestSpeachWriter::activatedProperty()
 {
   auto prop = dynamic_cast<IProperty*>( sender() );
-  if ( prop ) {
+  if ( prop && ( object ? object->properties().contains( prop ): false ) ) {
     current = prop;
   }
 }
@@ -32,16 +34,16 @@ void TestSpeachWriter::activatedProperty()
 void TestSpeachWriter::deactivatedProperty()
 {
   auto prop = dynamic_cast<IProperty*>( sender() );
-  if ( prop ? prop == current : false ) {
+  if ( ( prop ? prop == current : false ) && ( object ? object->properties().contains( prop ): false ) ) {
     int index = _properties.indexOf( prop );
     if ( index >= 0 && index + 1 < _properties.count() ) {
       _properties[index + 1]->activate();
     } else if ( index >= 0 && index + 1 >= _properties.count() ) {
       _properties.first()->activate();
     } else if ( index == -1 && !_properties.isEmpty() ) {
-        _properties.first()->activate();
+      _properties.first()->activate();
     } else {
-        current = nullptr;
+      current = nullptr;
     }
   }
 }
@@ -66,7 +68,45 @@ void TestSpeachWriter::recognition(const QString &data)
   }
 }
 
-IPropertyObject *TestSpeachWriter::obj() const
+void TestSpeachWriter::connectForm(IPropertyForm *form)
+{
+  connect( form,    &IPropertyForm::addedProperty,
+           this,    &TestSpeachWriter::connectPropery );
+
+  connect( form,    &IPropertyForm::removedProperty,
+           this,    &TestSpeachWriter::disconnectPropery );
+}
+
+void TestSpeachWriter::disconnectForm(IPropertyForm *form)
+{
+  disconnect( form,    &IPropertyForm::addedProperty,
+              this,    &TestSpeachWriter::connectPropery );
+
+  disconnect( form,    &IPropertyForm::removedProperty,
+              this,    &TestSpeachWriter::disconnectPropery );
+}
+
+void TestSpeachWriter::connectPropery(IProperty *property)
+{
+  connect( property,    &IProperty::say,
+           this,        &TestSpeachWriter::say );
+  connect( property,    &IProperty::activated,
+           this,        &TestSpeachWriter::activatedProperty );
+  connect( property,    &IProperty::deactivated,
+           this,        &TestSpeachWriter::deactivatedProperty );
+}
+
+void TestSpeachWriter::disconnectPropery(IProperty *property)
+{
+  disconnect( property,    &IProperty::say,
+              this,        &TestSpeachWriter::say );
+  disconnect( property,    &IProperty::activated,
+              this,        &TestSpeachWriter::activatedProperty );
+  disconnect( property,    &IProperty::deactivated,
+              this,        &TestSpeachWriter::deactivatedProperty );
+}
+
+IPropertyForm *TestSpeachWriter::form() const
 {
   return object;
 }
@@ -77,27 +117,21 @@ QList<IProperty *> TestSpeachWriter::properties() const
 }
 
 #include "property_provider.h"
-void TestSpeachWriter::setPropertyObj(IPropertyObject *obj)
+void TestSpeachWriter::setPropertyObj(IPropertyForm *obj)
 {
+  if ( object ) {
+    disconnectForm( object );
+    clearProperty();
+  }
+
+
   object = obj;
 
   if ( object ) {
-    PropertyProvider provider;
-    for ( auto &item: object->items() ) {
-      auto property = provider.create( item.id, item.type );
-      if ( property ) {
-        connect( property,    &IProperty::say,
-                 this,        &TestSpeachWriter::say );
-        connect( property,    &IProperty::activated,
-                 this,        &TestSpeachWriter::activatedProperty );
-        connect( property,    &IProperty::deactivated,
-                 this,        &TestSpeachWriter::deactivatedProperty );
-        _properties << property;
-      }
-    }
+    connectForm( object );
 
-    if ( !_properties.isEmpty() )
-      _properties.first()->activate();
+    if ( !object->properties().isEmpty() )
+      object->properties().first()->activate();
   }
 
   emit changed();

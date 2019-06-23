@@ -18,12 +18,16 @@ public:
   virtual QString id() const = 0;
   virtual QString type() const = 0;
   virtual QVariant value() const = 0;
+  virtual QString valueString() const = 0;
   virtual QStringList activateList() const = 0;
+  virtual QVariant getById(const QString &id) const = 0;
+  virtual QStringList dataIdList() const = 0;
 
 public slots:
   virtual bool activate() = 0;
   virtual bool deactivate() = 0;
   virtual bool setValue(const QVariant &value) = 0;
+  virtual bool setById(const QString &id, const QVariant &value) = 0;
 
 signals:
   void activated();
