@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QMdiArea>
+#include <QFile>
+#include <QAudioOutput>
 
 namespace Ui {
 class MainWindow;
@@ -18,13 +20,17 @@ public:
 
 private slots:
     void on_action_quit_triggered();
+    void on_action_add_doc_triggered();    
+    void handleStateChanged(QAudio::State);
 
-    void on_action_add_doc_triggered();
+public slots:
+    void StartSignal();//старт сигнала разговора
 
 private:
     Ui::MainWindow *ui;
-
     QMdiArea* _area;
+    QFile WavFile;
+    QAudioOutput* Mediaplayer;
 
 };
 
