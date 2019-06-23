@@ -7,14 +7,14 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+//    MainWindow w;
     /*
     QFile file(":/res/style.css");
     file.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(file.readAll());
     a.setStyleSheet(styleSheet);
     */
-    w.show();
+//    w.show();
 
     Assistent::inst();
 

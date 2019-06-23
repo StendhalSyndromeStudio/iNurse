@@ -2,6 +2,7 @@
 
 #include <texttospeech.h>
 
+#include "task/form_assistant.h"
 Assistent::Assistent(QObject *parent)
   : QObject(parent)
   , proxy ( new VoiceProxy( 6790, QUrl( "ws://127.0.0.1:6789" ), true ) )
@@ -22,11 +23,15 @@ Assistent::Assistent(QObject *parent)
         altr << array.at( i ).toString();
       }
       storage->recognition( altr );
+    } else {
+      qDebug() << "wait";
     }
   });
 
   connect( storage, &AssistantTaskStorage::query,
            [this](const QString &data){ this->say( data ); });
+
+  storage->addChildTask<FormAssistant>( &mw );
 
   proxy->setRecognitionActive( true );
 }
@@ -34,6 +39,11 @@ Assistent::Assistent(QObject *parent)
 Assistent::~Assistent()
 {
 
+}
+
+void Assistent::createCard()
+{
+  say( tr ( "Создаю новую медкарту" ) );
 }
 
 Assistent *Assistent::inst()
