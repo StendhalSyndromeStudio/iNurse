@@ -19,7 +19,7 @@ import queue as queue
 from threading import Thread
 from time import sleep
 import base64
-
+from simple_websocket_server import WebSocketServer, WebSocket
 
 CHUNKS = {}
 
@@ -99,13 +99,19 @@ def recognition(websocket, iam_token_or_api_key, folder_id=''):
     it = stub.StreamingRecognize(req, metadata=(('authorization', '%s %s' % (authorization_type, iam_token_or_api_key)),))
 #    print("before iteration")
     # Обработать ответы сервера и вывести результат в консоль.
+    to_send = {'action': 'recognize','alternatives':[],'final':True}
     try:
         for r in it:
             try:
                 print('Start chunk: ')
+                to_send['alternatives'] = []
+                to_send['final'] = True
                 for alternative in r.chunks[0].alternatives:
                     print('alternative: ', alternative.text)
+                    to_send['alternatives'].append(alternative.text)
                 print('Is final: ', r.chunks[0].final)
+                to_send['final']= r.chunks[0].final
+                websocket.send_message(json.dumps(to_send))
                 print('')
             except LookupError:
                 print('Not available chunks')
@@ -173,6 +179,48 @@ async def router(websocket, path):
     finally:
         #await unregister(websocket)
         print('finish')
-print("Starting...")
-asyncio.get_event_loop().run_until_complete(websockets.serve(router, 'localhost', 6789))
-asyncio.get_event_loop().run_forever()
+#print("Starting...")
+#asyncio.get_event_loop().run_until_complete(websockets.serve(router, 'localhost', 6789))
+#asyncio.get_event_loop().run_forever()
+
+
+
+class SimpleServer(WebSocket):
+    def handle(self):
+        try:
+    #        print("router method begin")
+            message = self.data
+            websocket = self
+#            print("we got message")
+            data = json.loads(message)
+            if data['action'] == 'recognize':
+#                print("action is recognize")
+                add_chunk(websocket,data['voice'])
+            elif data['action'] == 'synthesize':
+                base64_encoded_voice = synthesis(data['text'], API_KEY)
+                
+                #print('base64_encoded_voice')
+                #print(base64_encoded_voice)
+                print(type(base64_encoded_voice))
+                print('to_send')
+                to_send = json.dumps({'action': 'synthesize', 'id': data['id'], 'text': data['text'], 'voice': base64_encoded_voice, 'format': 'oggopus', 'encoding': 'base64'})
+                print(to_send)
+                
+                
+                websocket.send_message(to_send)
+            else:
+                logging.error(
+                    "unsupported event: {}", data)
+        finally:
+            #await unregister(websocket)
+            print('finish')
+
+    def connected(self):
+        print(self.address, 'connected')
+
+    def handle_close(self):
+        print(self.address, 'closed')
+
+
+server = WebSocketServer('', 6789, SimpleServer)
+server.serve_forever()

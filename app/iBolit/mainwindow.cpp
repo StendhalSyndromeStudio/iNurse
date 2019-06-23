@@ -37,7 +37,7 @@ void MainWindow::on_action_quit_triggered()
 
 void MainWindow::on_action_add_doc_triggered()
 {
-    QWidget* widget = new MainDoctors( _area );
+    QWidget *widget = new MainDoctors( _area );
     _area->addSubWindow( widget );
     widget->setWindowState( Qt::WindowState::WindowMaximized );
     widget->show();

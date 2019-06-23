@@ -41,14 +41,14 @@ void MainDoctors::CreateRtf(QString value){
     QWidget* val;
     if (value=="Медицинская карта.rtf"){
         val = new FormMedicalRecord(  );
-    }
+    } else
     if (value=="Визит к доктору.rtf"){
         val = new FormVisitDoctor(  );
-    }
+    } else
     if (value=="Направление к доктору.rtf"){
         val = new FormDirection(  );
-    }
-    if (value=="рецепт.rtf"){
+    } else
+    if (value=="Рецепт.rtf"){
         val = new FormRecipe(  );
     }
     FormProgress* prog = new FormProgress();

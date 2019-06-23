@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Импорт документов</string>
+   <string>Импорт шаблонов</string>
   </property>
   <property name="styleSheet">
    <string notr="true">  QLabel {
