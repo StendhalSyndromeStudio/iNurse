@@ -16,6 +16,7 @@ public:
   virtual bool hasWaitData() const = 0;
 
 public slots:
+  virtual void sayFinished(const QString &data);
   virtual void recognition(const QString &data) = 0;
 
 signals:

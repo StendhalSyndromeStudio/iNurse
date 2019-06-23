@@ -17,7 +17,7 @@ class FormMedicalRecord : public QWidget, public IPropertyWidget
   UniversalGuiWriter *writer;
 public:
   explicit FormMedicalRecord(QWidget *parent = nullptr);
-  ~FormMedicalRecord();
+  ~FormMedicalRecord() override;
 
   static int GUID() { return ++_guid; }
 
