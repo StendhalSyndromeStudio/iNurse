@@ -26,32 +26,24 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    maindoctors.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    maindoctors.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    maindoctors.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-### SPEECH WRITER
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../lib/static/speachWriter/release/ -lspeachWriter
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../lib/static/speachWriter/debug/ -lspeachWriter
-else:unix:!macx: LIBS += -L$$OUT_PWD/../../lib/static/speachWriter/ -lspeachWriter
-
-INCLUDEPATH += $$PWD/../../lib/static/speachWriter
-DEPENDPATH += $$PWD/../../lib/static/speachWriter
-
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/speachWriter/release/libspeachWriter.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/speachWriter/debug/libspeachWriter.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/speachWriter/release/speachWriter.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/speachWriter/debug/speachWriter.lib
-else:unix:!macx: PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/speachWriter/libspeachWriter.a
+RESOURCES += \
+    resourse.qrc
 
 #GUI
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../lib/static/GUI/release/ -lGUI
@@ -67,4 +59,19 @@ else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PW
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/GUI/debug/GUI.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/GUI/libGUI.a
 
+
+
+### SPEECH WRITER
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../lib/static/speachWriter/release/ -lspeachWriter
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../lib/static/speachWriter/debug/ -lspeachWriter
+else:unix:!macx: LIBS += -L$$OUT_PWD/../../lib/static/speachWriter/ -lspeachWriter
+
+INCLUDEPATH += $$PWD/../../lib/static/speachWriter
+DEPENDPATH += $$PWD/../../lib/static/speachWriter
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/speachWriter/release/libspeachWriter.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/speachWriter/debug/libspeachWriter.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/speachWriter/release/speachWriter.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/speachWriter/debug/speachWriter.lib
+else:unix:!macx: PRE_TARGETDEPS += $$OUT_PWD/../../lib/static/speachWriter/libspeachWriter.a
 

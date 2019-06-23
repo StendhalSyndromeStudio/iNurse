@@ -6,7 +6,7 @@
 #include <form_direction.h>
 #include <form_recipe.h>
 #include <formprogress.h>
-
+#include <QFile>
 
 MainDoctors::MainDoctors(QWidget *parent) :
     QMainWindow(parent),
@@ -19,6 +19,13 @@ MainDoctors::MainDoctors(QWidget *parent) :
     MainWidget->setParent( ui->centralwidget);
     connect(MainWidget,&TabWidgetDragDrop::CreateRtf,this,&MainDoctors::CreateRtf);
     connect(MainWidget,&TabWidgetDragDrop::tabCloseRequested,this, &MainDoctors::CloseTab);
+    /*
+    QFile file( ":/res/style.css" );
+    file.open( QFile::ReadOnly );
+    //QString styleSheet = QLatin1String( file.readAll() );
+    QString styleSheet = QLatin1String( QByteArray( ":/res/1.css" ) );
+    this->setStyleSheet(styleSheet);
+    */
 }
 
 void MainDoctors::CloseTab(int index){
@@ -26,9 +33,13 @@ void MainDoctors::CloseTab(int index){
 }
 
 void MainDoctors::CreateRtf(QString value){
-    qDebug()<< value+" :получил создание";
+    if ( _listDocs.contains( value ) ) {
+        return;
+    }
+    _listDocs.append( value );
+    //qDebug()<< value+" :получил создание";
     QWidget* val;
-    if (value=="Медицинский отчет.rtf"){
+    if (value=="Медицинская карта.rtf"){
         val = new FormMedicalRecord(  );
     }
     if (value=="Визит к доктору.rtf"){

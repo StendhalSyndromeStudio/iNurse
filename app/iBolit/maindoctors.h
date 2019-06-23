@@ -19,6 +19,7 @@ public:
 private:
     Ui::MainDoctors *ui;
     TabWidgetDragDrop* MainWidget;
+    QList<QString> _listDocs;
 
 public slots:
     void CreateRtf(QString value);
