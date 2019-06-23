@@ -20,9 +20,6 @@ private:
     Ui::MainDoctors *ui;
     TabWidgetDragDrop* MainWidget;
     QList<QString> _listDocs;
-
-    QList<QString> _listDocs;
-
 public slots:
     void CreateRtf(QString value);
     void CloseTab(int index);
