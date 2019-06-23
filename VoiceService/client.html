@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>capture microphone audio into buffer</title>
+
+</head>
+<body>
+
+    <script type="text/javascript">
+
+    const ws = new WebSocket("ws://127.0.0.1:6790");
+
+    navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+            
+            const mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.start();
+            console.log("start capturing audio");
+
+            mediaRecorder.addEventListener("dataavailable", event => {
+
+                new Response(event.data).arrayBuffer().then(function(arrayBuffer){
+
+                    const base64 = btoa(
+                    new Uint8Array(arrayBuffer)
+                        .reduce((data, byte) => data + String.fromCharCode(byte), '')
+                    );
+                    ws.send(JSON.stringify({action: 'recognize', voice: base64}));
+                });
+
+            });
+            setInterval( () => { mediaRecorder.requestData(); }, 2000 );
+
+        });
+
+    </script>
+</body>
+</html>
