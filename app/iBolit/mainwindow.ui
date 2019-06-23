@@ -35,8 +35,15 @@
     </property>
     <addaction name="action_add_doc"/>
    </widget>
+   <widget class="QMenu" name="menutmp">
+    <property name="title">
+     <string>tmp</string>
+    </property>
+    <addaction name="actionmedical_card"/>
+   </widget>
    <addaction name="menu_file"/>
    <addaction name="menu_doc"/>
+   <addaction name="menutmp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -55,6 +62,11 @@
   <action name="action_add_doc">
    <property name="text">
     <string>Добавить новый шаблон</string>
+   </property>
+  </action>
+  <action name="actionmedical_card">
+   <property name="text">
+    <string>medical card</string>
    </property>
   </action>
  </widget>

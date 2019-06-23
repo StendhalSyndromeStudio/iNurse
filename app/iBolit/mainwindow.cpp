@@ -5,13 +5,32 @@
 #include <form_direction.h>
 #include <form_recipe.h>
 #include "maindoctors.h"
+#include "QAudioFormat"
+#include "QDebug"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    //предзагрузка звука ассистента для проигрывания
+    WavFile.setFileName(":/res/assistant.wav");
+    WavFile.open(QIODevice::ReadOnly);
+    QAudioFormat format;
+    // Set up the format, eg.
+    format.setSampleRate(48000);
+    format.setChannelCount(2);
+    format.setSampleSize(32);
+    format.setCodec("audio/pcm");
+    format.setByteOrder(QAudioFormat::LittleEndian);
+    format.setSampleType(QAudioFormat::UnSignedInt);
+    QAudioDeviceInfo info(QAudioDeviceInfo::defaultOutputDevice());
+    if (!info.isFormatSupported(format)) {
+        qDebug() << "Raw audio format not supported by backend, cannot play audio.";
+       return;
+    }
+    Mediaplayer = new QAudioOutput(format, this);
+    connect(Mediaplayer, SIGNAL(stateChanged(QAudio::State)), this, SLOT(handleStateChanged(QAudio::State)));
     // Создаём Mdi Area в качестве центрального виджета
     _area = new QMdiArea( this );
     _area->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -25,10 +44,98 @@ MainWindow::MainWindow(QWidget *parent) :
     widget->print();
 }
 
+void MainWindow::handleStateChanged(QAudio::State newState)
+{
+    switch (newState) {
+        case QAudio::IdleState:
+            // Finished playing (no more data)
+            Mediaplayer->stop();
+            break;
+
+        case QAudio::StoppedState:
+            // Stopped for other reasons
+            if (Mediaplayer->error() != QAudio::NoError) {
+                // Error handling
+            }
+            break;
+
+        default:
+            // ... other cases as appropriate
+            break;
+    }
+}
+
+void MainWindow::StartSignal(){
+    Mediaplayer->start(&WavFile);
+}
+
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+  delete ui;
+}
+
+IPropertyForm *MainWindow::currentForm() const
+{
+  return current;
+}
+
+QList<IPropertyForm *> MainWindow::openedForms() const
+{
+  return _openedForms.keys();
+}
+
+bool MainWindow::contains(IPropertyForm *form) const
+{
+  return _openedForms.contains( form );
+}
+
+#include <property_widget_provider.h>
+bool MainWindow::openForm(IPropertyForm *form)
+{
+  auto widget = dynamic_cast<QWidget*>( PropertyWidgetProvider().create( form ) );
+  if ( widget ) {
+    _area->addSubWindow( widget );
+    widget->showMaximized();
+    return true;
+  }
+
+  return false;
+}
+
+bool MainWindow::closeForm(IPropertyForm *form)
+{
+  if ( _openedForms.contains( form ) ) {
+    auto wid = dynamic_cast<QWidget*>( _openedForms[ form ] );
+    if ( wid ) {
+      _openedForms.remove( form );
+      delete  wid;
+    }
+  }
+
+  return false;
+}
+
+bool MainWindow::closeCurrentForm()
+{
+  if ( current ) {
+    return closeForm( current );
+  }
+  return false;
+}
+
+bool MainWindow::setCurrentForm(IPropertyForm *form)
+{
+  if ( _openedForms.contains( form ) ) {
+    auto wid = dynamic_cast<QWidget*>( _openedForms[ form ] );
+    if ( wid ) {
+     _area->showMaximized();
+     current = form;
+     return true;
+    }
+  }
+
+  return false;
 }
 
 
@@ -44,4 +151,9 @@ void MainWindow::on_action_add_doc_triggered()
     _area->addSubWindow( widget );
     widget->setWindowState( Qt::WindowState::WindowMaximized );
     widget->show();
+}
+
+void MainWindow::changePatcient()
+{
+
 }

@@ -19,7 +19,7 @@ public:
 public:
   template<class Widget>
   void addWidget(const QString &type) {
-    creators[ type ] = [](const IPropertyForm *form) {
+    creators[ type ] = [](IPropertyForm *form) {
       auto widget = new Widget();
       widget->initilize( form );
       return widget;
