@@ -2,6 +2,7 @@
 
 #include "property/snils_property.h"
 #include "property/regexp_property.h"
+Q_DECLARE_METATYPE(QStringList)
 PropertyProvider::PropertyProvider()
 {
   add( "regexp", [](const QString &id)->IProperty* {
@@ -23,14 +24,53 @@ void PropertyProvider::add(const QString &type, const PropertyProvider::Property
   creators[ type ] = creator;
 }
 
+#include <QDir>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QCoreApplication>
 #include "property/base_property.h"
 IProperty *PropertyProvider::create(const QString &id, const QString &type)
 {
+  IProperty *prop = nullptr;
+
   if ( creators.contains( type ) ) {
     try {
-      return  creators[ type ]( id );
-    } catch (...) { }
+      prop = creators[ type ]( id );
+    } catch (...) {
+    }
   }
 
-  return new BaseProperty( id, type );
+  if ( !prop )
+    prop = new BaseProperty( id, type );
+
+  QDir dir ( QDir::fromNativeSeparators(
+               QCoreApplication::applicationDirPath() + "/data/types" ) );
+  dir.mkpath( "." );
+
+  QFile f ( QDir::fromNativeSeparators( dir.absolutePath() + "/" + type + ".json" ) );
+  if ( f.open( QIODevice::ReadOnly ) ) {
+    auto obj = QJsonDocument::fromJson( f.readAll() ).object();
+    f.close();
+
+    for ( auto &key: obj.keys() ) {
+      auto item = obj[ key ];
+      if ( item.isArray() ) {
+        QStringList list;
+        auto arr = item.toArray();
+        for ( int i = 0; i < arr.count(); ++i ) {
+            auto text = arr.at( i ).toString();
+            if ( !text.isEmpty() )
+              list << text;
+        }
+
+        prop->setById( key, QVariant::fromValue( list ) );
+      } else if ( item.isString() ) {
+        prop->setById( key, item.toString() );
+      }
+    }
+  }
+
+  return prop;
 }
