@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>600</height>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>АйБолит</string>
   </property>
   <widget class="QWidget" name="centralWidget"/>
   <widget class="QMenuBar" name="menuBar">
