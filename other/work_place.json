@@ -1,0 +1,13 @@
+{
+    "id": "work_place",
+    "activation_list": [
+        "Место работы", "работа"
+    ],
+    "question_list": [
+        "Место работы"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

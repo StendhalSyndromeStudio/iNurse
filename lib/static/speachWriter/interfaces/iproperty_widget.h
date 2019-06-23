@@ -7,25 +7,26 @@ class IPropertyForm;
 class IPropertyWidget
 {
 public:
-  struct Item {
+    struct Item {
 
 
-    QString id;
-    QString type;
-  };
-  using ItemList = QList<Item>;
+        QString id;
+        QString type;
+    };
+    using ItemList = QList<Item>;
 
 protected:
-  IPropertyWidget();
+    IPropertyWidget();
 public:
-  virtual ~IPropertyWidget();
+    virtual ~IPropertyWidget();
 
 public:
-  virtual QString type() const = 0;
+    virtual QString type() const = 0;
 
 public:
-  virtual void reload() = 0;
-  virtual void initilize(IPropertyForm *form) = 0;
+    virtual void reload() = 0;
+    virtual void initilize(IPropertyForm *form) = 0;
+    virtual void print() = 0;
 };
 
 #endif // IPROPERTY_WIDGET_H

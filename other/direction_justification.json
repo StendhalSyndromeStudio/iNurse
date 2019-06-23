@@ -1,0 +1,13 @@
+{
+    "id": "direction_justification",
+    "activation_list": [
+        "Обоснование направления", "обоснование", "направление"
+    ],
+    "question_list": [
+        "Обоснование направления"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

@@ -31,3 +31,9 @@ void FormDirection::initilize(IPropertyForm *form)
 {
 
 }
+
+
+void FormDirection::print()
+{
+
+}

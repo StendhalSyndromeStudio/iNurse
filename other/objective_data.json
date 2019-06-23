@@ -1,0 +1,13 @@
+{
+    "id": "objective_data",
+    "activation_list": [
+        "Объективные данные", "данные", "", "" 
+    ],
+    "question_list": [
+        "Объективные данные"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

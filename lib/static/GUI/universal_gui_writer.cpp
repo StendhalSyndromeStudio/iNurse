@@ -110,3 +110,9 @@ void UniversalGuiWriter::initilize(IPropertyForm *form)
 {
     UniversalGuiWriter::form = form;
 }
+
+
+void UniversalGuiWriter::print()
+{
+
+}

@@ -1,0 +1,13 @@
+{
+    "id": "address_area",
+    "activation_list": [
+        "Адрес регистрации район", "район"
+    ],
+    "question_list": [
+        "Адрес регистрации, район"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

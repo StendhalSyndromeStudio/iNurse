@@ -1,0 +1,13 @@
+{
+    "id": "locality",
+    "activation_list": [
+        "Местность"
+    ],
+    "question_list": [
+        "Местность"
+    ],
+    "variants": [
+        "городская", "сельская"
+    ],
+    "type": "text"
+}

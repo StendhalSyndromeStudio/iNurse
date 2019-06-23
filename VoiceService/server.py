@@ -117,6 +117,7 @@ def recognition(websocket, iam_token_or_api_key, folder_id=''):
                 print('Not available chunks')
     except grpc._channel._Rendezvous as err:
         print('Error code %s, message: %s' % (err._state.code, err._state.details))
+    if websocket in CHUNKS: del CHUNKS[websocket]
 
 def synthesis(text, iam_token_or_api_key, folder_id=''):
     authorization_type = 'Api-Key' if folder_id == '' else 'Bearer'

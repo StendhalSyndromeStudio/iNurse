@@ -26,8 +26,7 @@ public:
   virtual QString type() const override;
   virtual void reload() override;
   virtual void initilize(IPropertyForm *form) override;
-
-  void print();
+  virtual void print() override;
 
 private:
   static int _guid;

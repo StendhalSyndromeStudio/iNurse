@@ -1,0 +1,13 @@
+{
+    "id": "work_post",
+    "activation_list": [
+        "Должность", "специальность"
+    ],
+    "question_list": [
+        "Должность"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

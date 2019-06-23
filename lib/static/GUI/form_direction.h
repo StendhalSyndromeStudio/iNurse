@@ -26,6 +26,7 @@ public:
     QString type() const;
     void reload();
     void initilize(IPropertyForm *form);
+    virtual void print() override;
 
 };
 

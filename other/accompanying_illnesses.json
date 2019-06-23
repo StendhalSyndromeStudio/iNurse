@@ -1,0 +1,13 @@
+{
+    "id": "accompanying_illnesses",
+    "activation_list": [
+        "Сопутствующие заболевания", "дополнительные заболевания"
+    ],
+    "question_list": [
+        "Сопутствующие заболевания"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}

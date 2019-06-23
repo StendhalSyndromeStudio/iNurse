@@ -1,0 +1,13 @@
+{
+    "id": "address_house",
+    "activation_list": [
+        "Адрес регистрации дом", "дом"
+    ],
+    "question_list": [
+        "Адрес регистрации, дом"
+    ],
+    "variants": [
+        ""
+    ],
+    "type": "text"
+}
