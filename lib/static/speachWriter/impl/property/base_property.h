@@ -1,7 +1,9 @@
 #ifndef BASE_PROPERTY_H
 #define BASE_PROPERTY_H
 
+#include <QMap>
 #include <QObject>
+#include <QVariant>
 #include "interfaces/iproperty.h"
 
 class BaseProperty
@@ -9,11 +11,11 @@ class BaseProperty
 {
   Q_OBJECT
 protected:
-  QString       _id;
-  QString       _type;
-  QVariant      _value;
-  QStringList   _activateList;
-  bool          _isActivate;
+  QString                   _id;
+  QString                   _type;
+  QVariant                  _value;
+  bool                      _isActivate;
+  QMap<QString, QVariant>   _dataById;
 public:
   explicit BaseProperty(const QString &id = ""
                         , const QString &type = ""
@@ -34,11 +36,14 @@ public:
   virtual QVariant value() const override;
   virtual QString valueString() const override;
   virtual QStringList activateList() const override;
+  virtual QVariant getById(const QString &id) const override;
+  virtual QStringList dataIdList() const override;
 
 public slots:
   virtual bool activate() override;
   virtual bool deactivate() override;
   virtual bool setValue(const QVariant &value) override;
+  virtual bool setById(const QString &id, const QVariant &value) override;
 };
 
 #endif // BASE_PROPERTY_H
