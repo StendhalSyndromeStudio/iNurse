@@ -2,12 +2,15 @@
 #define FORM_DIRECTION_H
 
 #include <QWidget>
+#include "universal_gui_writer.h"
+#include <interfaces/iproperty_widget.h>
+#include <interfaces/iproperty_form.h>
 
 namespace Ui {
 class FormDirection;
 }
 
-class FormDirection : public QWidget
+class FormDirection : public QWidget, public IPropertyWidget
 {
     Q_OBJECT
 
@@ -17,6 +20,13 @@ public:
 
 private:
     Ui::FormDirection *ui;
+
+    // IPropertyWidget interface
+public:
+    QString type() const;
+    void reload();
+    void initilize(IPropertyForm *form);
+
 };
 
 #endif // FORM_DIRECTION_H

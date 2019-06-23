@@ -14,12 +14,12 @@ MainWindow::MainWindow(QWidget *parent) :
     _area->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     _area->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setCentralWidget( _area );
-    /*
-    QWidget *widget = new FormMedicalRecord( _area );
+
+    FormMedicalRecord *widget = new FormMedicalRecord( _area );
     // Добавляем виджет в качестве подокна в Mdi Area
     _area->addSubWindow( widget );
     widget->show();
-    */
+    widget->print();
 }
 
 
