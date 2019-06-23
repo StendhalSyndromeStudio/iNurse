@@ -21,7 +21,9 @@ TextToSpeech::TextToSpeech(QObject *parent)
 
 
 void TextToSpeech::AddPlay(QString value){
-   ListRecord->append(value);
+   if (value!=""){
+    ListRecord->append(value);
+   }
 }
 
 void TextToSpeech::StopPlay(){
