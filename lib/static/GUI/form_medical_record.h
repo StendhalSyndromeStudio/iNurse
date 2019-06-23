@@ -27,6 +27,8 @@ public:
   virtual void reload() override;
   virtual void initilize(IPropertyForm *form) override;
 
+  void print();
+
 private:
   static int _guid;
 };

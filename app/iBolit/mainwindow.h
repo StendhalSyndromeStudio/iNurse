@@ -3,6 +3,8 @@
 
 #include <QMap>
 #include <QMdiArea>
+#include <QFile>
+#include <QAudioOutput>
 #include <QMainWindow>
 #include <interfaces/iproperty_form.h>
 #include <interfaces/Iproperty_widget.h>
@@ -34,15 +36,19 @@ public slots:
 
 private slots:
     void on_action_quit_triggered();
+    void on_action_add_doc_triggered();    
+    void handleStateChanged(QAudio::State);
 
-    void on_action_add_doc_triggered();
+public slots:
+    void StartSignal();//старт сигнала разговора
 
     void changePatcient();
 
 private:
     Ui::MainWindow *ui;
-
     QMdiArea* _area;
+    QFile WavFile;
+    QAudioOutput* Mediaplayer;
 
 };
 

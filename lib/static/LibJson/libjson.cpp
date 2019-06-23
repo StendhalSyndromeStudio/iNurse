@@ -29,10 +29,21 @@ bool LibJson::LoadFile(QString path)
     return true;
 }
 
+QJsonObject LibJson::json( ) {
+    return _json;
+}
+
+QString LibJson::getValue( const QString &name ) {
+    return _json.value( name ).toString( );
+}
+
+QStringList LibJson::getKeys( ) {
+    return  _json.keys( );
+}
 
 void LibJson::loadObject(QJsonObject &jObject)
 {
-    qDebug() << "is object";
+
     foreach (QJsonValue value, jObject) {
         loadValue( value );
     }

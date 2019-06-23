@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += widgets
+QT       += widgets printsupport
 
 QT       -= gui
 
@@ -29,6 +29,7 @@ SOURCES += \
         form_recipe.cpp \
         form_visit_doctor.cpp \
         gui.cpp \
+    print.cpp \
     tabwidgetdragdrop.cpp \
     formprogress.cpp\
     universal_gui_writer.cpp\
@@ -40,6 +41,7 @@ HEADERS += \
         form_recipe.h \
         form_visit_doctor.h \
         gui.h \
+    print.h \
     tabwidgetdragdrop.h \
     formprogress.h\
     universal_gui_writer.h \
