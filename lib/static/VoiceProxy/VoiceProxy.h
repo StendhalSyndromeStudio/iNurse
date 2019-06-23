@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QJsonObject>
 #include <QUrl>
+#include <QDateTime>
 
 QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
 QT_FORWARD_DECLARE_CLASS(QWebSocket)
@@ -24,6 +25,8 @@ public:
     explicit VoiceProxy(quint16 port, QUrl recognitionService, bool startRecognition = false, bool debug=false, QObject *parent = nullptr);
     ~VoiceProxy();
 
+protected:
+    virtual void timerEvent(QTimerEvent *event) override;
 public slots:
     void setRecognitionActive(bool value);
     bool isRecognitionActive();
@@ -52,5 +55,6 @@ private:
     QWebSocketServer *m_pWebSocketServer;
     VoiceProxyClient m_client;
     QUrl m_recognitionService;
+    QDateTime m_lastTimeUpdated;
 };
 
