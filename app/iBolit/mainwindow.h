@@ -44,6 +44,9 @@ public slots:
 
     void changePatcient();
 
+signals:
+    void formChanged();
+
 private:
     Ui::MainWindow *ui;
     QMdiArea* _area;

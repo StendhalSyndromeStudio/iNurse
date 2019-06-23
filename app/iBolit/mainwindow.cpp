@@ -11,6 +11,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
+  , current ( nullptr )
 {
     ui->setupUi(this);
     //предзагрузка звука ассистента для проигрывания
@@ -97,7 +98,9 @@ bool MainWindow::openForm(IPropertyForm *form)
   auto widget = dynamic_cast<QWidget*>( PropertyWidgetProvider().create( form ) );
   if ( widget ) {
     _area->addSubWindow( widget );
-    widget->showMaximized();
+    widget->showNormal();
+    current = form;
+    emit formChanged();
     return true;
   }
 
@@ -109,6 +112,15 @@ bool MainWindow::closeForm(IPropertyForm *form)
   if ( _openedForms.contains( form ) ) {
     auto wid = dynamic_cast<QWidget*>( _openedForms[ form ] );
     if ( wid ) {
+      if ( current == form ) {
+         current = _openedForms.isEmpty()
+             ? nullptr
+             : _openedForms.lastKey();
+
+         if ( current )
+           dynamic_cast<QWidget*>( _openedForms[ current ] )->showNormal();
+      }
+
       _openedForms.remove( form );
       delete  wid;
     }

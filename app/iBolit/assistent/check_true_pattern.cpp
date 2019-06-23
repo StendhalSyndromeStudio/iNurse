@@ -3,7 +3,7 @@
 bool CheckTruePattern::check(const QStringList &pattern)
 {
   for  ( auto &p: pattern ) {
-    for ( auto &ok: QStringList{ "да", "конечно", "давай", "быстрее" } ) {
+    for ( auto &ok: QStringList{ "да", "конечно", "давай", "быстрее", "согласен", "не возвражаю" } ) {
       if ( p.toLower().indexOf( ok ) != -1 ) {
         return true;
       }

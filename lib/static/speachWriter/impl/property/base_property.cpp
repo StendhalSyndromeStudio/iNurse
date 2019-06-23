@@ -47,7 +47,7 @@ QString BaseProperty::valueString() const
 
 QStringList BaseProperty::activateList() const
 {
-  return _dataById[ "activateList" ].toStringList();
+  return _dataById[ "activation_list" ].toStringList();
 }
 
 QVariant BaseProperty::getById(const QString &id) const

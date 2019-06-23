@@ -35,7 +35,8 @@ SOURCES += \
     assistent/task/assistant_query_task.cpp \
     assistent/assistant.cpp \
     assistent/task/form_assistant.cpp \
-    assistent/check_true_pattern.cpp
+    assistent/check_true_pattern.cpp \
+    assistent/task/form_task.cpp
 
 HEADERS += \
         maindoctors.h \
@@ -47,7 +48,8 @@ HEADERS += \
     assistent/task/assistant_query_task.h \
     assistent/assistant.h \
     assistent/task/form_assistant.h \
-    assistent/check_true_pattern.h
+    assistent/check_true_pattern.h \
+    assistent/task/form_task.h
 
 FORMS += \
         maindoctors.ui \

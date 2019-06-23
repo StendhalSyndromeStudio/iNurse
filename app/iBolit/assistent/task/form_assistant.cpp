@@ -63,6 +63,8 @@ void FormAssistant::reply(const QString &question, const QStringList &reply)
 
             closeForm();
           } );
+        } else {
+          sendQuery( "Оставляем", [](const QStringList &){} );
         }
 
       } );

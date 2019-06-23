@@ -26,6 +26,7 @@ void PropertyProvider::add(const QString &type, const PropertyProvider::Property
 
 #include <QDir>
 #include <QFile>
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -70,6 +71,8 @@ IProperty *PropertyProvider::create(const QString &id, const QString &type)
         prop->setById( key, item.toString() );
       }
     }
+  } else {
+    qDebug() << "error load property: " << type << f.errorString() << f.fileName();
   }
 
   return prop;

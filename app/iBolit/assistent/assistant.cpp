@@ -3,10 +3,11 @@
 #include <texttospeech.h>
 #include <impl/medical_card_provider.h>
 
+#include "task/form_task.h"
 #include "task/form_assistant.h"
 Assistent::Assistent(QObject *parent)
   : QObject(parent)
-  , proxy ( new VoiceProxy( 6790, QUrl( "ws://127.0.0.1:6789" ), true ) )
+  , proxy ( new VoiceProxy( 6790, QUrl( "ws://127.0.0.1:6789" ), true, false ) )
   , storage ( new AssistantTaskStorage() )
   , card ( nullptr )
 {
@@ -34,6 +35,7 @@ Assistent::Assistent(QObject *parent)
            [this](const QString &data){ this->say( data ); });
 
   storage->addChildTask<FormAssistant>( &mw );
+  storage->addChildTask<FormTask>( &mw );
   forms = MedicalCardProvider().loadAll();
 
   proxy->setRecognitionActive( true );
@@ -98,7 +100,7 @@ Assistent *Assistent::inst()
 void Assistent::say(const QString &text)
 {
   if ( proxy->isRecognitionActive() ) {
-    proxy->setRecognitionActive( false );
+//    proxy->setRecognitionActive( false );
     TextToSpeech::instanse()->AddPlay( text );
   }
 }

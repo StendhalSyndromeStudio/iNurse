@@ -14,12 +14,12 @@ MedicalCard::MedicalCard()
   connect( form,  &IPropertyForm::changed,
            this,  &IPropertyForm::changed );
 
-  property( "fio", "text" );
-  property( "date_birth_day", "date" );
-  property( "date_birth_month", "date" );
-  property( "date_birth_year", "date" );
-  property( "document_series", "number" );
-  property( "documnet_number", "number" );
+  property( "fio", "fio" );
+  property( "date_birth_day", "date_birth_day" );
+  property( "date_birth_month", "date_birth_month" );
+  property( "date_birth_year", "date_birth_year" );
+  property( "document_series", "document_series" );
+  property( "documnet_number", "documnet_number" );
 }
 
 MedicalCard::~MedicalCard()
