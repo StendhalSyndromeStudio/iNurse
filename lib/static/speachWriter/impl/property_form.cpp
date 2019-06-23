@@ -3,11 +3,12 @@
 
 PropertyForm::PropertyForm(const QString &type)
   : IPropertyForm ()
+  , _parent ( nullptr )
 {
-  property( "id", "text" );
-  property( "type", "text" )->setValue( type );
-  property( "name", "text" );
-  property( "description", "text" );
+  _id           = property( "id", "text" );
+  _type         = property( "type", "text" ); _type->setValue( type );
+  _name         = property( "name", "text" );
+  _description  = property( "description", "text" );
 }
 
 PropertyForm::~PropertyForm()

@@ -21,7 +21,7 @@ public:
   ~AssistantQueryTask() override;
 
 public:
-  void sendQuery(const QString &query, const ReplyMethod &method, int timeout = 5000 );
+  void sendQuery(const QString &query, const ReplyMethod &method, int timeout = 10000 );
 
   // IAssistantTask interface
 public:

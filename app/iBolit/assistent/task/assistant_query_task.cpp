@@ -25,10 +25,13 @@ void AssistantQueryTask::sendQuery(const QString &query, const AssistantQueryTas
   };
 
   auto con = connect( timer,    &QTimer::timeout,
-                  [this, method, query]() {
+                  [this, method, query, timer]() {
     try {
-      waitReplyHandlers.remove( query );
-      method( QStringList { } );
+      if ( waitReplyHandlers.remove( query ) ) {
+        method( QStringList { } );
+        timer->stop();
+        timer->deleteLater();
+      }
     } catch (...) { }
   });
 
@@ -40,7 +43,7 @@ void AssistantQueryTask::sendQuery(const QString &query, const AssistantQueryTas
 
   IAssistantTask::query( query );
   if ( timeout > 0 )
-  timer->start( timeout );
+    timer->start( timeout );
 }
 
 

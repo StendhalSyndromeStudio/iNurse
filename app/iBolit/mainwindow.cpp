@@ -36,12 +36,13 @@ MainWindow::MainWindow(QWidget *parent) :
     _area->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     _area->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setCentralWidget( _area );
-
+/*
     FormVisitDoctor *widget = new FormVisitDoctor( _area );
     // Добавляем виджет в качестве подокна в Mdi Area
     _area->addSubWindow( widget );
     widget->show();
     widget->print();
+    */
 }
 
 void MainWindow::handleStateChanged(QAudio::State newState)

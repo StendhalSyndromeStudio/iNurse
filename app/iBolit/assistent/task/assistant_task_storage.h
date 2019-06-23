@@ -27,10 +27,10 @@ public:
     IAssistantTask *task  = new Task(args...);
       connect( task,   &IAssistantTask::query,
                [this, task](const QString &query) {
-
-        sendQuery( query, [query, task](const QStringList &reply) {
-          task->reply( query, reply );
-        });
+        AssistantQueryTask::query( query );
+//        sendQuery( query, [query, task](const QStringList &reply) {
+//          task->reply( query, reply );
+//        });
       });
       taskList << task;
   }

@@ -3,7 +3,7 @@
 
 MedicalCard::MedicalCard()
   : IMedicalCard ()
-  , form ( new PropertyForm( "medical_card" ) )
+  , form ( new PropertyForm( "medical_record" ) )
 {
   connect( form,  &IPropertyForm::addedProperty,
            this,  &IPropertyForm::addedProperty );
@@ -13,8 +13,6 @@ MedicalCard::MedicalCard()
 
   connect( form,  &IPropertyForm::changed,
            this,  &IPropertyForm::changed );
-
-  form->initilizeParent( this );
 
   property( "fio", "text" );
   property( "date_birth_day", "date" );

@@ -25,7 +25,10 @@ void AssistantTaskStorage::recognition(const QStringList &recognition)
     lastQuery.clear();
     qDebug() << "to reply " << tmp << recognition.join( "; " );
     AssistantQueryTask::reply( tmp, recognition );
-  } else {
+  }
+
+
+  else {
     double max              = 0.0;
     IAssistantTask *current = nullptr;
     for ( auto &item: taskList ) {
@@ -34,12 +37,12 @@ void AssistantTaskStorage::recognition(const QStringList &recognition)
       for ( auto &activ: item->activateCommand() ) {
         for ( auto &r: recognition ) {
           int pos = activ.trimmed().toLower().indexOf( r.trimmed().toLower() );
-          if ( pos > 0 ) {
+          if ( pos >= 0 ) {
             itemMax = std::max ( itemMax, static_cast<double>( r.length() ) / activ.length() );
           }
         }
 
-        if ( itemMax >= 0.5 ) {
+        if ( itemMax >= 0.1 ) {
           if ( max < itemMax ) {
             max = itemMax;
             current = item;
@@ -47,6 +50,7 @@ void AssistantTaskStorage::recognition(const QStringList &recognition)
         }
       }
     }
+
     if ( current ) {
       current->reply( "", recognition );
       qDebug() << "to recognition" <<recognition.join( "; " );
