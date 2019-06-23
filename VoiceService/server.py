@@ -115,9 +115,16 @@ def recognition(websocket, iam_token_or_api_key, folder_id=''):
                 print('')
             except LookupError:
                 print('Not available chunks')
+                if websocket in CHUNKS: del CHUNKS[websocket]
+                print('1 if websocket in CHUNKS: del CHUNKS[websocket]')        
+        if websocket in CHUNKS: del CHUNKS[websocket]
     except grpc._channel._Rendezvous as err:
         print('Error code %s, message: %s' % (err._state.code, err._state.details))
-    if websocket in CHUNKS: del CHUNKS[websocket]
+        if websocket in CHUNKS: del CHUNKS[websocket]
+    finally:
+        print('2 if websocket in CHUNKS: del CHUNKS[websocket]') 
+        if websocket in CHUNKS: del CHUNKS[websocket]
+    print('3 if websocket in CHUNKS: del CHUNKS[websocket]') 
 
 def synthesis(text, iam_token_or_api_key, folder_id=''):
     authorization_type = 'Api-Key' if folder_id == '' else 'Bearer'
@@ -130,7 +137,7 @@ def synthesis(text, iam_token_or_api_key, folder_id=''):
         return str(base64.b64encode(f.read()),'utf-8')
 
 def add_chunk(websocket,chunk):
-    need_init = not websocket in CHUNKS
+    need_init = (not websocket in CHUNKS) #or CHUNKS[websocket].empty()
 #    print("add chunk method begin")
     if need_init:
 #        print("creating queue")
@@ -221,6 +228,7 @@ class SimpleServer(WebSocket):
 
     def handle_close(self):
         print(self.address, 'closed')
+        if self in CHUNKS: del CHUNKS[websocket]
 
 
 server = WebSocketServer('', 6789, SimpleServer)

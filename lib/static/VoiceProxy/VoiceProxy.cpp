@@ -10,7 +10,7 @@ QObject(parent),
     m_debug(debug),
     m_pWebSocketServer(new QWebSocketServer(QStringLiteral("VoiceProxy"),
                                             QWebSocketServer::NonSecureMode, this)),
-     m_recognitionService(recognitionService) {
+     m_recognitionService(recognitionService), m_lastTimeUpdated(QDateTime::currentDateTimeUtc()) {
     m_client.activeRecognition = startRecognition;
     if (m_pWebSocketServer->listen(QHostAddress::Any, port)) {
             if (m_debug)
@@ -20,6 +20,7 @@ QObject(parent),
             //connect(m_pWebSocketServer, &QWebSocketServer::closed, this, &VoiceProxy::closed);
     }
     initRecognizeHandler();
+    startTimer(500);
 }
 
 VoiceProxy::~VoiceProxy()
@@ -29,9 +30,19 @@ VoiceProxy::~VoiceProxy()
     if( m_client.recognizeHandler ) m_client.recognizeHandler->deleteLater();
 }
 
+void VoiceProxy::timerEvent(QTimerEvent *event)
+{
+    auto currentTime = QDateTime::currentDateTimeUtc();
+    auto diff = m_lastTimeUpdated.msecsTo( currentTime );
+    if(diff > 5000) {
+        //initRecognizeHandler();
+    }
+}
+
 void VoiceProxy::initRecognizeHandler() {
     if(m_client.recognizeHandler) m_client.recognizeHandler->deleteLater();
     m_client.recognizeHandler = nullptr;
+    m_lastTimeUpdated = QDateTime::currentDateTimeUtc();
     m_client.recognizeHandler = new QWebSocket();
     connect(m_client.recognizeHandler, &QWebSocket::connected, this, &VoiceProxy::onRecognizeHandlerConnected);
     connect(m_client.recognizeHandler, &QWebSocket::disconnected, this, &VoiceProxy::onRecognizeHandlerDisconnected);
@@ -64,6 +75,7 @@ void VoiceProxy::onRecognizeHandlerTextMessageReceived(QString message)
         qDebug() << "recognized text";
         qDebug() << message;
     }
+    m_lastTimeUpdated = QDateTime::currentDateTimeUtc();
     emit recognized(QJsonDocument::fromJson(message.toUtf8()).object());
 }
 

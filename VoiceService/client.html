@@ -71,12 +71,12 @@
 
     const url = "ws://127.0.0.1:6790";
 
-    const ws = new WebSocketClient();
+    //const ws = new WebSocketClient();
 
     navigator.mediaDevices.getUserMedia({ audio: true })
         .then(stream => {
-            ws.open(url);
-
+            //ws.open(url);
+            const ws = new WebSocket(url);
 
             const mediaRecorder = new MediaRecorder(stream);
             mediaRecorder.start();
